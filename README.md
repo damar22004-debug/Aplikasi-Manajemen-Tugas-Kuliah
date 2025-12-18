@@ -4,45 +4,334 @@ Aplikasi web untuk mengelola tugas perkuliahan dengan fitur CRUD, tracking deadl
 
 👤 User Story
 Sebagai Mahasiswa, saya ingin:
-a)	Login ke sistem dengan username dan password
-b)	Menambahkan tugas baru dengan detail lengkap
-c)	Melihat daftar semua tugas saya
-d)	Mengedit informasi tugas
-e)	Menghapus tugas yang sudah tidak relevan
-f)	Memfilter tugas berdasarkan status
-g)	Mengurutkan tugas berdasarkan deadline/prioritas
-h)	Melihat statistik progress tugas
-i)	Menerima notifikasi untuk deadline mendatang
-j)	Logout dari sistem dengan aman
+
+Login ke sistem dengan username dan password
+
+Menambahkan tugas baru dengan detail lengkap
+
+Melihat daftar semua tugas saya
+
+Mengedit informasi tugas
+
+Menghapus tugas yang sudah tidak relevan
+
+Memfilter tugas berdasarkan status
+
+Mengurutkan tugas berdasarkan deadline/prioritas
+
+Melihat statistik progress tugas
+
+Menerima notifikasi untuk deadline mendatang
+
+Logout dari sistem dengan aman
 
 📋 SRS (Software Requirements Specification)
 Feature List:
 1. Fitur Autentikasi (Authentication)
-•	Login dengan username/password
-•	Auto-register untuk user baru
-•	Session management
-•	Logout dengan session destroy
+Login dengan username/password
+
+Auto-register untuk user baru
+
+Session management
+
+Logout dengan session destroy
+
 2. Fitur Manajemen Tugas (Assignment Management)
-•	Create: Tambah tugas baru
-•	Read: Lihat daftar tugas
-•	Update: Edit tugas
-•	Delete: Hapus tugas
-•	Filter by status (Belum Mulai, Sedang Dikerjakan, Selesai, Terlambat)
-•	Sort by deadline, priority, recency
-•	Auto-update status terlambat
+Create: Tambah tugas baru
+
+Read: Lihat daftar tugas
+
+Update: Edit tugas
+
+Delete: Hapus tugas
+
+Filter by status (Belum Mulai, Sedang Dikerjakan, Selesai, Terlambat)
+
+Sort by deadline, priority, recency
+
+Auto-update status terlambat
+
 3. Fitur Dashboard & Statistik
-•	Statistik cards (Total, Selesai, Dalam Proses, Terlambat)
-•	Persentase penyelesaian
-•	Real-time updates
-•	Responsive design (Desktop & Mobile)
+Statistik cards (Total, Selesai, Dalam Proses, Terlambat)
+
+Persentase penyelesaian
+
+Real-time updates
+
+Responsive design (Desktop & Mobile)
+
 4. Fitur Notifikasi
-•	Visual alert untuk tugas terlambat
-•	Visual alert untuk deadline <24 jam
-•	Countdown timer
-•	Auto-check setiap 1 menit
+Visual alert untuk tugas terlambat
+
+Visual alert untuk deadline <24 jam
+
+Countdown timer
+
+Auto-check setiap 1 menit
+
 5. Fitur UI/UX
-•	Responsive design
-•	Mobile-friendly (FAB, Bottom Sheet)
-•	Color-coded badges
-•	Form validation
-•	Error handling
+Responsive design
+
+Mobile-friendly (FAB, Bottom Sheet)
+
+Color-coded badges
+
+Form validation
+
+Error handling
+
+📊 UML (Unified Modeling Language)
+Use Case Diagram
+text
+┌─────────────────────────────────────────────┐
+│                Mahasiswa                    │
+└─────────────────┬───────────────────────────┘
+                  │
+    ┌─────────────┼─────────────┐
+    │             │             │
+    ▼             ▼             ▼
+┌─────────┐ ┌─────────┐ ┌──────────────┐
+│  Login  │ │  Logout │ │ Kelola Tugas │
+└─────────┘ └─────────┘ └──────┬───────┘
+                                │
+                 ┌──────────────┴──────────────┐
+                 │                             │
+                 ▼                             ▼
+          ┌─────────────┐              ┌─────────────┐
+          │ Tambah Tugas│              │ Lihat Tugas │
+          └─────────────┘              └──────┬──────┘
+                 │                             │
+          ┌──────┴──────┐              ┌──────┴──────┐
+          ▼             ▼              ▼             ▼
+    ┌─────────┐  ┌─────────┐    ┌─────────┐  ┌─────────┐
+    │  Edit   │  │  Hapus  │    │ Filter  │  │  Sort   │
+    └─────────┘  └─────────┘    └─────────┘  └─────────┘
+Activity Diagram
+1. Login Process:
+text
+┌───────┐     ┌───────────┐     ┌─────────────┐     ┌───────────┐
+│ Start │────▶│ Input     │────▶│ Validate    │────▶│ Check DB  │
+└───────┘     │ Credential│     │ Input       │     └─────┬─────┘
+               └───────────┘     └─────────────┘           │
+                                                           │
+                    ┌─────────────┐             ┌─────────▼─────────┐
+                    │ Error       │◀────────────│ User exists?      │
+                    │ Message     │             └─────────┬─────────┘
+                    └─────────────┘                       │
+                                                           │
+                                             ┌────────────▼────────────┐
+                                             │ Password correct?       │
+                                             └────────────┬────────────┘
+                                                           │
+                                             ┌────────────▼────────────┐
+                                             │ Create session          │
+                                             │ Redirect to dashboard   │
+                                             └─────────────────────────┘
+2. Add Assignment Process:
+text
+┌───────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│ Start │────▶│ Open Form   │────▶│ Fill Form   │────▶│ Validate    │
+└───────┘     └─────────────┘     └─────────────┘     └─────┬───────┘
+                                                              │
+                    ┌─────────────┐             ┌────────────▼────────────┐
+                    │ Show Error  │◀────────────│ Valid data?             │
+                    └─────────────┘             └────────────┬────────────┘
+                                                              │
+                                             ┌───────────────▼───────────────┐
+                                             │ Save to Database              │
+                                             │ Show Success Message          │
+                                             │ Refresh Assignments List      │
+                                             └───────────────────────────────┘
+Sequence Diagram
+1. Login Sequence:
+text
+Mahasiswa          Browser           login.php        Database
+   │                   │                   │               │
+   │─1. Input creds───▶│                   │               │
+   │                   │─2. POST login────▶│               │
+   │                   │                   │─3. Validate───│
+   │                   │                   │               │─4. Check user
+   │                   │                   │◀─5. User data─│
+   │                   │◀─6. Create session│               │
+   │                   │─7. Redirect──────▶│               │
+   │◀─8. Dashboard─────│                   │               │
+2. CRUD Assignment Sequence:
+text
+Mahasiswa          app.js            api.php          Database
+   │                   │                   │               │
+   │─1. Click Add─────▶│                   │               │
+   │                   │─2. Show Form─────▶│               │
+   │─3. Fill Form─────▶│                   │               │
+   │                   │─4. POST create───▶│               │
+   │                   │                   │─5. Validate───│
+   │                   │                   │               │─6. Insert
+   │                   │                   │◀─7. Success───│
+   │                   │◀─8. Show Success─│               │
+   │                   │─9. Refresh List──▶│               │
+🎨 Mock-Up
+1. Login Page
+text
+┌─────────────────────────────────────────────────────┐
+│                  MANAJEMEN TUGAS KULIAH             │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  ┌─────────────────────────────────────────────┐  │
+│  │             SELAMAT DATANG KEMBALI!         │  │
+│  │  ┌─────────────────────────────────────┐    │  │
+│  │  │ [👤] Username _____________________ │    │  │
+│  │  └─────────────────────────────────────┘    │  │
+│  │  ┌─────────────────────────────────────┐    │  │
+│  │  │ [🔒] Password _____________________ │    │  │
+│  │  └─────────────────────────────────────┘    │  │
+│  │                                             │  │
+│  │  [─────────── LOGIN ───────────]          │  │
+│  │                                             │  │
+│  │  💡 Demo: Username bebas, password min 4   │  │
+│  └─────────────────────────────────────────────┘  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+2. Dashboard Desktop
+text
+┌─────────────────────────────────────────────────────────────┐
+│ Dashboard │ Halo, [Username]!              [👤 Logout]      │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐          │
+│  │ 📊 12   │ │ ✅ 8    │ │ ⏳ 3    │ │ ⚠️ 1    │          │
+│  │ Total   │ │ Selesai │ │ Proses │ │ Terlamb│          │
+│  │ Tugas   │ │ (67%)   │ │         │ │        │          │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘          │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐  │
+│  │                 TAMBAH TUGAS BARU                   │  │
+│  │  Nama Tugas: [___________________________]          │  │
+│  │  Mata Kuliah: [________________________]            │  │
+│  │  Deskripsi: [_________________________]             │  │
+│  │  Deadline: [📅 ________  🕒 ______]                 │  │
+│  │  Prioritas: [▽ Sedang]   Status: [▽ Belum Mulai]   │  │
+│  │  [─────────── TAMBAH TUGAS ───────────]            │  │
+│  └─────────────────────────────────────────────────────┘  │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐  │
+│  │  🔍 Filter: [▽ Semua Tugas] Sort: [▽ Deadline]     │  │
+│  └─────────────────────────────────────────────────────┘  │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐  │
+│  │  ⚠️  Tugas Akhir DB                                 │  │
+│  │     📚 Basis Data | ⏰ Deadline: 2 jam lagi         │  │
+│  │     [EDIT] [🗑️]                                   │  │
+│  │                                                     │  │
+│  │  ✅  Paper AI                                      │  │
+│  │     📚 AI | Status: Selesai                        │  │
+│  │     [EDIT] [🗑️]                                   │  │
+│  └─────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+3. Mobile View
+text
+┌─────────────────────────┐
+│ Manajemen Tugas         │
+│ Halo, User! [☰][🚪]    │
+├─────────────────────────┤
+│                         │
+│  📊12  ✅8  ⏳3  ⚠️1    │
+│                         │
+│  [🔍 Filter] [🔄 Sort]  │
+│                         │
+│  ⚠️ Tugas Akhir DB      │
+│  ⏰ 2 jam lagi          │
+│  [✏️][🗑️]             │
+│                         │
+│  ✅ Paper AI            │
+│  🏁 Selesai             │
+│  [✏️][🗑️]             │
+│                         │
+│  [＋] ← FAB Button      │
+└─────────────────────────┘
+
+┌─────────────────────────┐ ← Bottom Sheet
+│ [×] Tambah Tugas Baru   │
+├─────────────────────────┤
+│ Nama: [_____________]   │
+│ Matkul: [____________]  │
+│ Desk: [______________]  │
+│ Deadline: [📅____🕒__] │
+│ Prioritas: [▽ Sedang]   │
+│ Status: [▽ Belum Mulai] │
+│ [───── SIMPAN ─────]    │
+└─────────────────────────┘
+🔄 SDLC (Software Development Life Cycle)
+1. Planning (Perencanaan)
+Objective: Membuat sistem manajemen tugas untuk mahasiswa
+
+Scope: Web-based application dengan CRUD functionality
+
+Tools: PHP, MySQL, JavaScript, HTML/CSS
+
+Timeline: 1-2 minggu development
+
+2. Analysis (Analisis)
+Requirement Gathering: User stories, feature list
+
+Technical Feasibility: LAMP stack (Linux, Apache, MySQL, PHP)
+
+Risk Assessment: Security, performance, usability
+
+3. Design (Desain)
+Architecture: Client-Server dengan REST API
+
+Database Design: Normalized schema
+
+UI/UX Design: Responsive, mobile-first
+
+Security Design: Prepared statements, input sanitization
+
+4. Implementation (Implementasi)
+Frontend: HTML/CSS/JavaScript
+
+Backend: PHP dengan MySQLi
+
+Database: MySQL dengan 2 tables (users, assignments)
+
+Integration: API endpoints, session management
+
+5. Testing (Pengujian)
+Unit Testing: Each function/component
+
+Integration Testing: API endpoints
+
+User Acceptance Testing: Fitur sesuai kebutuhan user
+
+Security Testing: SQL injection, XSS protection
+
+6. Deployment (Peluncuran)
+Environment: Localhost development
+
+Deployment: Upload ke web hosting
+
+Documentation: README, user guide
+
+Maintenance Plan: Bug fixes, feature updates
+
+7. Maintenance (Pemeliharaan)
+Bug Fixes: Monitor and fix issues
+
+Updates: Security patches, feature enhancements
+
+Support: User assistance, documentation updates
+
+📈 Progress Status:
+Planning & Analysis: 100%
+
+Design (Database & UI): 100%
+
+Implementation (Backend): 100%
+
+Implementation (Frontend): 100%
+
+Testing: 100%
+
+Documentation: 100%
+
+Deployment: In Progress
+
+Maintenance: Ongoing
