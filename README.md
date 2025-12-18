@@ -1,8 +1,10 @@
 Aplikasi Manajemen Tugas Kuliah
 📌 Deskripsi Project
+
 Aplikasi web untuk mengelola tugas perkuliahan dengan fitur CRUD, tracking deadline, prioritas tugas, dan statistik progress. Sistem membantu mahasiswa dalam mengorganisir tugas-tugas kuliah secara efektif.
 
 👤 User Story
+
 Sebagai Mahasiswa, saya ingin:
 
 Login ke sistem dengan username dan password
