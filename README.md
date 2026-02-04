@@ -1,4 +1,4 @@
-# 📋 Dashboard Management Tugas - Damsky
+# 📋 Dashboard Management Tugas 
 
 Dashboard manajemen tugas berbasis web dengan desain *Glassmorphism* modern untuk memantau progres perkuliahan secara efisien.
 
