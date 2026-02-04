@@ -1,163 +1,65 @@
-Aplikasi Manajemen Tugas Kuliah
-📌 
-
-Deskripsi Project
-
-Aplikasi web untuk mengelola tugas perkuliahan dengan fitur CRUD, tracking deadline, prioritas tugas, dan statistik progress. Sistem membantu mahasiswa dalam mengorganisir tugas-tugas kuliah secara efektif.
-
-👤 User Story
-
-Sebagai Mahasiswa, saya ingin:
-
-Login ke sistem dengan username dan password
-
-Menambahkan tugas baru dengan detail lengkap
-
-Melihat daftar semua tugas saya
-
-Mengedit informasi tugas
-
-Menghapus tugas yang sudah tidak relevan
-
-Memfilter tugas berdasarkan status
-
-Mengurutkan tugas berdasarkan deadline/prioritas
-
-Melihat statistik progress tugas
-
-Menerima notifikasi untuk deadline mendatang
-
-Logout dari sistem dengan aman
-
-📋 SRS (Software Requirements Specification)
-Feature List:
-1. Fitur Autentikasi (Authentication)
-Login dengan username/password
-
-Auto-register untuk user baru
-
-Session management
-
-Logout dengan session destroy
-
-2. Fitur Manajemen Tugas (Assignment Management)
-Create: Tambah tugas baru
-
-Read: Lihat daftar tugas
-
-Update: Edit tugas
-
-Delete: Hapus tugas
-
-Filter by status (Belum Mulai, Sedang Dikerjakan, Selesai, Terlambat)
-
-Sort by deadline, priority, recency
-
-Auto-update status terlambat
-
-3. Fitur Dashboard & Statistik
-Statistik cards (Total, Selesai, Dalam Proses, Terlambat)
-
-Persentase penyelesaian
-
-Real-time updates
-
-Responsive design (Desktop & Mobile)
-
-4. Fitur Notifikasi
-Visual alert untuk tugas terlambat
-
-Visual alert untuk deadline <24 jam
-
-Countdown timer
-
-Auto-check setiap 1 menit
-
-5. Fitur UI/UX
-Responsive design
-
-Mobile-friendly (FAB, Bottom Sheet)
-
-Color-coded badges
-
-Form validation
-
-Error handling
-
-
-🔄 SDLC (Software Development Life Cycle)
-1. Planning (Perencanaan)
-Objective: Membuat sistem manajemen tugas untuk mahasiswa
-
-Scope: Web-based application dengan CRUD functionality
-
-Tools: PHP, MySQL, JavaScript, HTML/CSS
-
-Timeline: 1-2 minggu development
-
-2. Analysis (Analisis)
-Requirement Gathering: User stories, feature list
-
-Technical Feasibility: LAMP stack (Linux, Apache, MySQL, PHP)
-
-Risk Assessment: Security, performance, usability
-
-3. Design (Desain)
-Architecture: Client-Server dengan REST API
-
-Database Design: Normalized schema
-
-UI/UX Design: Responsive, mobile-first
-
-Security Design: Prepared statements, input sanitization
-
-4. Implementation (Implementasi)
-Frontend: HTML/CSS/JavaScript
-
-Backend: PHP dengan MySQLi
-
-Database: MySQL dengan 2 tables (users, assignments)
-
-Integration: API endpoints, session management
-
-5. Testing (Pengujian)
-Unit Testing: Each function/component
-
-Integration Testing: API endpoints
-
-User Acceptance Testing: Fitur sesuai kebutuhan user
-
-Security Testing: SQL injection, XSS protection
-
-6. Deployment (Peluncuran)
-Environment: Localhost development
-
-Deployment: Upload ke web hosting
-
-Documentation: README, user guide
-
-Maintenance Plan: Bug fixes, feature updates
-
-7. Maintenance (Pemeliharaan)
-Bug Fixes: Monitor and fix issues
-
-Updates: Security patches, feature enhancements
-
-Support: User assistance, documentation updates
-
-📈 Progress Status:
-Planning & Analysis: 100%
-
-Design (Database & UI): 100%
-
-Implementation (Backend): 100%
-
-Implementation (Frontend): 100%
-
-Testing: 100%
-
-Documentation: 100%
-
-Deployment: In Progress
-
-Maintenance: Ongoing
+# 📋 Dashboard Management Tugas - Damsky
+
+Dashboard manajemen tugas berbasis web dengan desain *Glassmorphism* modern untuk memantau progres perkuliahan secara efisien.
+
+---
+
+## 📄 Dokumentasi Project (Progress Report)
+
+### 1. Deskripsi
+Aplikasi ini adalah dashboard personal yang dirancang khusus bagi mahasiswa untuk mengelola tugas kuliah. Fokus utama aplikasi adalah pada antarmuka pengguna (UI) yang bersih, minimalis, dan transparan, memberikan pengalaman navigasi yang nyaman melalui visualisasi status tugas (Belum Mulai, Proses, Selesai, Terlambat).
+
+### 2. User Story
+- **Sebagai Mahasiswa**, saya ingin mencatat tugas baru beserta mata kuliah dan deadline-nya agar tidak ada tugas yang terlewat.
+- **Sebagai Pengguna**, saya ingin melihat status progres tugas secara visual agar saya tahu prioritas mana yang harus dikerjakan lebih dulu.
+- **Sebagai Pengguna**, saya ingin melihat kalender interaktif untuk memantau jadwal penting di bulan berjalan.
+
+### 3. Software Requirements Specification (SRS)
+#### Feature List:
+- **Form Input Tugas:** Nama tugas, Mata Kuliah, dan Tanggal/Waktu.
+- **Statistik Dashboard:** Penghitung otomatis jumlah tugas berdasarkan status.
+- **Kalender Interaktif:** Navigator tanggal dengan indikator tugas.
+- **Filter Status:** Memfilter tampilan kartu tugas berdasarkan kategori tertentu.
+- **Manajemen Kartu:** Fitur untuk mengedit dan menghapus tugas yang sudah ada.
+
+### 4. UML (Unified Modeling Language)
+#### a. Use Case Diagram
+- **Actor:** Mahasiswa (User).
+- **Actions:** Create Task, View Dashboard, Update Task Status, Delete Task, View Calendar.
+
+#### b. Activity Diagram
+- Dimulai dari input form -> Validasi data -> Data disimpan ke LocalStorage -> Update UI Dashboard secara real-time.
+
+#### c. Sequence Diagram
+- User berinteraksi dengan UI Dashboard -> Dashboard memanggil fungsi simpan/edit -> Data diolah di JavaScript -> UI memberikan feedback instan kepada User.
+
+### 5. Mock-Up
+Desain menggunakan prinsip *Glassmorphism* dengan detail:
+- **Sidebar:** Transparan dengan efek blur tinggi.
+- **Cards:** Menggunakan border putih tipis dan bayangan lembut (soft shadow).
+- **Warna:** Palet pastel untuk indikator status.
+
+---
+
+## 🛠️ SDLC (Software Development Life Cycle)
+Proyek ini dikembangkan menggunakan metodologi **Agile (Scrum)**:
+1. **Planning:** Menentukan fitur utama dan struktur data.
+2. **Design:** Membuat mock-up UI/UX berbasis Glassmorphism.
+3. **Implementation:** Coding menggunakan HTML5, Tailwind CSS, dan Vanilla JavaScript.
+4. **Testing:** Uji coba fungsionalitas form input dan filter status.
+5. **Deployment:** Hosting melalui GitHub Pages.
+
+---
+
+## 🚀 Teknologi yang Digunakan
+- **Frontend:** HTML5, Tailwind CSS (Styling)
+- **Icons:** Lucide Icons
+- **Font:** Plus Jakarta Sans
+- **Logic:** Vanilla JavaScript (ES6)
+
+---
+
+## 💻 Cara Menjalankan Secara Lokal
+1. Clone repository ini: `git clone https://github.com/username-kamu/nama-repo.git`
+2. Buka folder projek.
+3. Klik kanan pada file `index.html` dan pilih **Open with Live Server** (atau buka langsung di browser).
