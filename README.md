@@ -59,7 +59,3 @@ Proyek ini dikembangkan menggunakan metodologi **Agile (Scrum)**:
 
 ---
 
-## 💻 Cara Menjalankan Secara Lokal
-1. Clone repository ini: `git clone https://github.com/username-kamu/nama-repo.git`
-2. Buka folder projek.
-3. Klik kanan pada file `index.html` dan pilih **Open with Live Server** (atau buka langsung di browser).
